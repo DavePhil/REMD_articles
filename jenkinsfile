@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    tools{
+        maven 'maven'
+    }
+    stages {
+        stage('SCM') {
+            steps {
+                git changelog: false, poll: false, url: 'https://github.com/DavePhil/REMD_articles.git'
+            }
+        }
+        stage('Maven Build'){
+            steps {
+                bat "mvn clean install"
+            }
+        }
+        stage('Docker Build'){
+            steps {
+                script {
+                    bat "docker build -t davechedjoun/REMD_articles ."
+                }
+            }
+        }
+        stage('Docker Push'){
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                        bat "docker login -u davechedjoun -p ${dockerhubpwd}"
+                        bat "docker push davechedjoun/REMD_articles"
+                    }
+            }
+            }
+        }
+    }
+}
