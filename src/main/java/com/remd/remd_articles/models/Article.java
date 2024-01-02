@@ -14,4 +14,8 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nom;
+    private String photo;
+    private String description;
+    private ArticleState state = ArticleState.cree;
 }
