@@ -53,10 +53,11 @@ public class ArticleService implements IArticleService {
         return new ResponseEntity<>("Cet article n'est pas présent", HttpStatus.OK);
     }
 
-    public Article create(String nom, MultipartFile photo, String description) throws IOException {
+    public Article create(String nom, MultipartFile photo, String description, Long idUser) throws IOException {
         Article article = new Article();
         article.setDescription(description);
         article.setNom(nom);
+        article.setIdUser(idUser);
         String _photo = Utils.addMultiPartFile("photo",photo);
         article.setPhoto(_photo);
         return articleRepository.save(article);

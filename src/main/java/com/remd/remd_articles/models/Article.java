@@ -18,4 +18,5 @@ public class Article {
     private String photo;
     private String description;
     private ArticleState state = ArticleState.cree;
+    private Long idUser;
 }
