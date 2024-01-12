@@ -11,9 +11,9 @@ public interface NotificationsProxy {
     void newAccount(@PathVariable("name") String name, @PathVariable("to") String to);
     @PostMapping("notification/sendToken/{name}/{to}/{token}")
     void sendToken(@PathVariable("name") String name, @PathVariable("to") String to, @PathVariable("token") String token);
-    @PostMapping("sendTrouve/{name}/{to}")
+    @PostMapping("notification/sendTrouve/{name}/{to}")
     void sendTrouve(@PathVariable("name") String name, @PathVariable("to") String to);
-    @PostMapping("sendPotentiellementRetrouve/{name}/{to}/{nomRetrouveur}/{numberRetrouveur}/{emailRetrouveur}")
+    @PostMapping("notification/sendPotentiellementRetrouve/{name}/{to}/{nomRetrouveur}/{numberRetrouveur}/{emailRetrouveur}")
     void sendPotentiellementRetrouve(@PathVariable("name") String name, @PathVariable("to") String to,
                                             @PathVariable("nomRetrouveur") String nomRetrouveur,
                                             @PathVariable("numberRetrouveur") String numberRetrouveur,

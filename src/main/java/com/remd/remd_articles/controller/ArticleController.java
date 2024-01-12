@@ -81,7 +81,7 @@ public class ArticleController {
         if (article== null) return new ResponseEntity<>("Cet article n'existe pas", HttpStatus.BAD_REQUEST);
         articleService.modifyArticleState(ArticleState.retrouve,id);
         Users user = userProxy.getById(article.getIdUser());
-        notificationsProxy.sendTrouve(user.getUserName(), user.getEmail());
+        notificationsProxy.sendTrouve(user.getUserName(), user.getEmail().toString());
         return new ResponseEntity<>("Article marque retrouve", HttpStatus.OK);
     }
 
@@ -92,7 +92,7 @@ public class ArticleController {
         articleService.modifyArticleState(ArticleState.supposeTrouve,id);
         Users user = userProxy.getById(article.getIdUser());
         Users retrouveur = userProxy.getById(idUser);
-        notificationsProxy.sendPotentiellementRetrouve(user.getUserName(), user.getEmail(), retrouveur.getUserName(), retrouveur.getNumber(), retrouveur.getEmail());
+        notificationsProxy.sendPotentiellementRetrouve(user.getUserName(), user.getEmail().toString(), retrouveur.getUserName(), retrouveur.getNumber(), retrouveur.getEmail().toString());
         return new ResponseEntity<>("Article marque suppose trouve", HttpStatus.OK);
     }
 }

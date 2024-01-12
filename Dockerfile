@@ -1,14 +1,12 @@
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jdk-jammy
+
 WORKDIR /app
 
-# Install Spring Boot buildpacks
-RUN apk add spring-boot-buildpacks
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN sed -i 's/\r$//' mvnw
+RUN ./mvnw dependency:resolve
 
-# Build application
-RUN spring-boot:build-image --build-arg JAR_FILE=articles.jar
+COPY src ./src
 
-# Expose port
-EXPOSE 9001
-
-# Run application
-CMD ["java", "-jar", "articles.jar"]
+CMD ["./mvnw", "spring-boot:run"]
