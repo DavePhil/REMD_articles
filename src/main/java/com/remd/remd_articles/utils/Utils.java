@@ -21,7 +21,7 @@ public  class Utils {
         return  "/" + locationName + "/" + multipartFile.getOriginalFilename();
     }
     public static Boolean verifyImageExtension(MultipartFile multipartFile){
-        return (!multipartFile.getContentType().equals("image/jpg")&&!multipartFile.getContentType().equals("image/jpeg") && !multipartFile.getContentType().equals("image/png"));
+        return (!multipartFile.getContentType().equals("image/jpg") && !multipartFile.getContentType().equals("image/jpeg") && !multipartFile.getContentType().equals("image/png"));
     }
 
     public static Boolean verifyFileExtensionType(MultipartFile multipartFile){

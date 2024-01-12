@@ -33,7 +33,7 @@ public class ArticleController {
                                      @RequestParam("description") String description,
                                      @RequestParam("idUser")Long idUser) throws IOException {
         if (Utils.verifyImageExtension(photo)){
-            return new ResponseEntity<>("Nous n'acceptions que les images de type jpeg ou alors png", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Nous n'acceptions que les images de type jpg/jpeg ou alors png", HttpStatus.BAD_REQUEST);
         }
         Article article = articleService.create(nom, photo, description, idUser);
         return new ResponseEntity<>(article, HttpStatus.OK);
